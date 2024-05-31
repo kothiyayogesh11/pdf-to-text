@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .login_wrap {
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 30px;
+            border: 1px solid #233B7C;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px #233B7C40;
+        }
+
+        .login_footer {
+            margin-bottom: 20px;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .submit {
+            font-size: 16px;
+            font-weight: 500;
+            color: #ffffff;
+            border: none;
+            background-color: #102253;
+            border: 1px solid #102253;
+            border-radius: 8px;
+            width: 100%;
+            padding: 5px 15px !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .submit:hover {
+            background-color: #112c75 !important;
+            border: 1px solid #233B7C !important;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-content">
+
+        <div class="container-fluid">
+            <div class="row align-items-center" style="height: 100vh; background: #FCFCFD;">
+                <div class="col-lg-6 d-none d-lg-block p-0" style="position: relative; line-height: 0;">
+                    <img src="https://jiyantech.com/images/SmartLiving.jpeg" alt="nest" style="height: 100vh;">
+                </div>
+                <div class="col-lg-6 col-md-12 col-12">
+                    <div id="flashMessages">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                        {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="login_wrap">
+
+                        <div class="text-center mb-3">
+                            <a href="/">
+                                <img width="200" src="https://felixsys.in/assets/images/logo/f.png" alt="Jiyan Tech">
+                            </a>
+                        </div>
+                        <div>
+                            <div class="display-sm text-center login_h1">Log in to your account</div>
+                            <p class="mb-30 text-center login_p">Welcome back! Please enter your details.</p>
+                        </div>
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="email" class="form-black-label w-100">Email:</label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter your email"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="form-black-label w-100">Password:</label>
+                                <input type="password" class="form-control" name="password" placeholder="**********"
+                                    required>
+                            </div>
+                            <div class="login_footer form-group">
+                                <div class="chek-form">
+                                    <div class="custom-control custom-checkbox">
+                                        <input class="custom-control-input" type="checkbox" name="checkbox"
+                                            id="exampleCheckbox1">
+                                        <label class="custom-control-label" for="exampleCheckbox1">
+                                            <span class="ms-0">Remember for 30 days</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <a href="/reset-password" class="forgot">Forgot password?</a>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn submit w-100" name="login">Sign in</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function removeFlashedMessages() {
+            setTimeout(function () {
+                var flashMessages = document.getElementById('flashMessages');
+                if (flashMessages) {
+                    flashMessages.innerHTML = '';
+                }
+            }, 2000);
+        }
+
+        document.addEventListener('DOMContentLoaded', removeFlashedMessages);
+    </script>
+</body>
+
+</html>
